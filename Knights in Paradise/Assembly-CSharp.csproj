@@ -46,7 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\scripts\Boomerang\Boomerang.cs" />
+     <Compile Include="Assets\scripts\Boomerang\ThrowBoomerang.cs" />
+     <Compile Include="Assets\scripts\Player\PlayerControl.cs" />
+     <Compile Include="Assets\scripts\Player\PlayerGrounded.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
