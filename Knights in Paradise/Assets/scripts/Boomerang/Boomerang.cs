@@ -9,12 +9,12 @@ public class Boomerang : MonoBehaviour {
     float throwTimer;
     float speed = 4f;
     float vertSpeed = 0.8f;
-    bool returning = false;
+    public bool returning = false;
     // Use this for initialization
   
     void OnEnable()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         throwTimer = 0.0f;
     }
 
@@ -49,7 +49,6 @@ public class Boomerang : MonoBehaviour {
             transform.Translate(vertDirection * vertSpeed * Time.deltaTime, Space.World);
         }
     }
-
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("collision detected" + gameObject.name);

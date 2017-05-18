@@ -10,9 +10,7 @@ public class PlayerControl : MonoBehaviour {
     Rigidbody player;
     Vector3 movement;
     Vector3 playerTurining;
-    RaycastHit hit;
 
-    public Transform groundCheck;
     public bool grounded = false;
     public float jumpPower = 250f;
 
@@ -31,7 +29,7 @@ public class PlayerControl : MonoBehaviour {
         PlayerChangeSides(h);
         AnimateRun(h);
 
-        if (Input.GetKeyDown(KeyCode.X) && grounded)
+        if (Input.GetButton("Jump") && grounded)
         {
            player.AddRelativeForce(new Vector3(0f, jumpPower, 0f));
         }
