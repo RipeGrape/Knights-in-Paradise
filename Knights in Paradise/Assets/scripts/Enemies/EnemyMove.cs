@@ -24,11 +24,20 @@ public class EnemyMove : MonoBehaviour {
     float sight = 2f;
     public bool seePlayer = false;
 
+    GameObject player;
+    PlayerHurt playerHit;
+
     void Awake()
     {
         enemy = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         edgeTrigger = GameObject.FindWithTag("boundry").transform;
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("enemy"));
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHit = player.GetComponent<PlayerHurt>();
+
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyWeapon"), LayerMask.NameToLayer("enemy"));
     }
 	
 	// Update is called once per frame
@@ -119,6 +128,23 @@ public class EnemyMove : MonoBehaviour {
         {
             Debug.Log("It worked");
             turnAround = false;
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.collider.gameObject.layer == LayerMask.NameToLayer("player"))
+        {
+            Debug.Log("I was hit");
+            if(facingLeft)
+            {
+                playerHit.PlayerHit(-dir);
+            }
+            else if(!facingLeft)
+            {
+                playerHit.PlayerHit(-dir);
+            }
+            
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - boundry
   - enemy
   - BoomerangMaster
+  - EnemyWeapon
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - ground
   - enemy
   - boundry
-  - 
+  - EnemyWeapon
   - 
   - 
   - 

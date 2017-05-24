@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AIBoomerang : MonoBehaviour {
     private Transform enemy;
+    GameObject player;
+    PlayerHurt playerHit;
     private Animator anim;
 
     float throwTimer;
@@ -11,12 +13,17 @@ public class AIBoomerang : MonoBehaviour {
     float vertSpeed = 0.8f;
     bool returning = false;
     public bool boomerangInHand = true;
+
+    float hitDir = -1f;
     // Use this for initialization
 
     void OnEnable()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHit = player.GetComponent<PlayerHurt>();
         enemy = GameObject.FindGameObjectWithTag("BoomerangMaster").transform;
         throwTimer = 0.0f;
+
     }
 
     // Update is called once per frame
@@ -30,6 +37,7 @@ public class AIBoomerang : MonoBehaviour {
 
         if (throwTimer >= 2.5f)
         {
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyWeapon"), LayerMask.NameToLayer("enemy"), false);
             returning = true;
         }
 
@@ -42,6 +50,7 @@ public class AIBoomerang : MonoBehaviour {
             if (horiDirection.x > 0)
             {
                 transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+                hitDir *= 1f;
             }
             else
             {
@@ -58,6 +67,14 @@ public class AIBoomerang : MonoBehaviour {
         {
             Destroy(gameObject);
             boomerangInHand = true;
+        }
+       
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.gameObject.layer == LayerMask.NameToLayer("player"))
+        {
+            playerHit.PlayerHit(-hitDir);
         }
     }
 }

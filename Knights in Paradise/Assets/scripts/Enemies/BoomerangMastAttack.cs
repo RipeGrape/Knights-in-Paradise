@@ -6,6 +6,8 @@ public class BoomerangMastAttack : MonoBehaviour {
 
     private Animator anim;
     private EnemyMove comMove;
+    PlayerHurt playerHit;
+    GameObject player;
     public GameObject boomerang;
     float newThrow = 4f;
 
@@ -13,6 +15,8 @@ public class BoomerangMastAttack : MonoBehaviour {
     {
         anim = transform.root.gameObject.GetComponent<Animator>();
         comMove = transform.root.GetComponent<EnemyMove>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHit = player.GetComponent<PlayerHurt>();
     }
 
     // Update is called once per frame

@@ -13,21 +13,32 @@ public class PlayerControl : MonoBehaviour {
 
     public bool grounded = false;
     public float jumpPower = 250f;
+    public bool isHurtable = true;
+    float fallTimer;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
         player = GetComponent<Rigidbody>();
-        
+
+        fallTimer = 0f;
+    }
+
+    void Update()
+    {
+        fallTimer += Time.deltaTime;
     }
 
     void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
-
-        Move(h);
-        PlayerChangeSides(h);
+        if (isHurtable)
+        {
+            Move(h);
+            PlayerChangeSides(h);
+        }
         AnimateRun(h);
+
 
         if (Input.GetButton("Jump") && grounded)
         {
@@ -62,8 +73,16 @@ public class PlayerControl : MonoBehaviour {
 
     void AnimateRun(float h)
     {
-        bool running = h != 0f;
-        anim.SetBool("IsRunning", running);
+        
+        if (isHurtable)
+        {
+            bool running = h != 0f;
+            anim.SetBool("IsRunning", running);
+        }
+       else
+        {
+            anim.SetBool("IsRunning", false);
+        }
     }
     
     void OnTriggerEnter(Collider other)
@@ -71,6 +90,8 @@ public class PlayerControl : MonoBehaviour {
         if (other.transform.tag == "ground")
         {
             grounded = true;
+            isHurtable = true;
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("player"),false);
         }
     }
 
@@ -81,4 +102,6 @@ public class PlayerControl : MonoBehaviour {
             grounded = false;
         }
     }
+
+    
 }
