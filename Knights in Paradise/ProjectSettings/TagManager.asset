@@ -10,6 +10,8 @@ TagManager:
   - enemy
   - BoomerangMaster
   - EnemyWeapon
+  - EdgeCheck
+  - Charger
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - enemy
   - boundry
   - EnemyWeapon
-  - 
+  - charger
   - 
   - 
   - 

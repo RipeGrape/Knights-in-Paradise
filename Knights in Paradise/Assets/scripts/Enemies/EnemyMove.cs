@@ -9,10 +9,10 @@ public class EnemyMove : MonoBehaviour {
     Transform edgeTrigger;
 
     public bool facingLeft = true;
-    public float speed = 3f;
+    public float speed = 2f;
     bool edge;
     Vector3 movement;
-    float dir = -1f;
+    public float dir = -1f;
     bool turnAround = false;
     float turnTimer = 3f;
     float forceTurnTimer = 2f;
@@ -29,15 +29,19 @@ public class EnemyMove : MonoBehaviour {
 
     void Awake()
     {
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyWeapon"), LayerMask.NameToLayer("enemy"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyWeapon"), LayerMask.NameToLayer("charger"));      
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("enemy"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("charger"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("charger"), LayerMask.NameToLayer("charger"));
+
         enemy = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         edgeTrigger = GameObject.FindWithTag("boundry").transform;
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("enemy"));
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerHit = player.GetComponent<PlayerHurt>();
 
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyWeapon"), LayerMask.NameToLayer("enemy"));
     }
 	
 	// Update is called once per frame
@@ -84,7 +88,7 @@ public class EnemyMove : MonoBehaviour {
     }
 
     //Move will move the enemies
-    void Move(float dir)
+    public void Move(float dir)
     {
         movement.Set(dir, 0f, 0f);
         movement = movement.normalized * speed * Time.deltaTime;
@@ -146,5 +150,6 @@ public class EnemyMove : MonoBehaviour {
             }
             
         }
+        
     }
 }

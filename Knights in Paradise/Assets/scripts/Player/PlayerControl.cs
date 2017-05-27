@@ -26,6 +26,11 @@ public class PlayerControl : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetButtonDown("Jump") && grounded)
+        {
+            player.AddRelativeForce(new Vector3(0f, jumpPower, 0f));
+            grounded = false;
+        }
         fallTimer += Time.deltaTime;
     }
 
@@ -38,12 +43,6 @@ public class PlayerControl : MonoBehaviour {
             PlayerChangeSides(h);
         }
         AnimateRun(h);
-
-
-        if (Input.GetButton("Jump") && grounded)
-        {
-           player.AddRelativeForce(new Vector3(0f, jumpPower, 0f));
-        }
     }
 
     void Move(float h)
@@ -92,6 +91,8 @@ public class PlayerControl : MonoBehaviour {
             grounded = true;
             isHurtable = true;
             Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("player"),false);
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("charger"),false);
+            Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyWeapon"), LayerMask.NameToLayer("player"), false);
         }
     }
 

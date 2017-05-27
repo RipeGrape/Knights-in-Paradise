@@ -17,7 +17,7 @@ public class PlayerHurt : MonoBehaviour {
     GameObject enemyWeapon;
     BoxCollider boxCollider;
     float hitTimer;
-    //GameObject[] enemyWeapons;
+    
 
 
     void Awake()
@@ -56,6 +56,7 @@ public class PlayerHurt : MonoBehaviour {
     {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("player"));
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("EnemyWeapon"), LayerMask.NameToLayer("player"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("charger"));
 
         anim.SetTrigger("IsHurt");
         player.AddRelativeForce(110f * direction, 110f, 0);
