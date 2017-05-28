@@ -5,17 +5,28 @@ using UnityEngine;
 public class Boomerang : MonoBehaviour {
     private Transform player;
     private Animator anim;
+    GameObject charger;
+    GameObject boomMast;
+    EnemyHealth chargerHit;
+    EnemyHealth boomMastHit;
 
     float throwTimer;
     float speed = 4f;
     float vertSpeed = 0.8f;
     public bool returning = false;
     // Use this for initialization
-  
+    void Start()
+    {
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerWeapon"), LayerMask.NameToLayer("EnemyWeapon"));
+    }
     void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         throwTimer = 0.0f;
+        charger = GameObject.FindGameObjectWithTag("Charger");
+        boomMast = GameObject.FindGameObjectWithTag("BoomerangMaster");
+        chargerHit = charger.GetComponent<EnemyHealth>();
+        boomMastHit = boomMast.GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame

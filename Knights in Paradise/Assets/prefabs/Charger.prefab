@@ -838,6 +838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingLeft: 1
   speed: 2
+  dir: -1
   eyes: {fileID: 4174493249282778}
   seePlayer: 0
 --- !u!114 &114202608088593380

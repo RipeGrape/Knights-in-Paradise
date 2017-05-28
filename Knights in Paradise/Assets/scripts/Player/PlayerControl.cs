@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour {
     Vector3 playerTurining;
 
     public bool grounded = false;
-    public float jumpPower = 250f;
+    float jumpPower = 250f;
     public bool isHurtable = true;
     float fallTimer;
 
@@ -20,18 +20,16 @@ public class PlayerControl : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         player = GetComponent<Rigidbody>();
-
-        fallTimer = 0f;
     }
 
     void Update()
     {
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            player.AddRelativeForce(new Vector3(0f, jumpPower, 0f));
+            //player.AddForce(new Vector3(0f, jumpPower, 0f));
+            player.velocity += Vector3.up * 5f;
             grounded = false;
         }
-        fallTimer += Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -88,7 +86,7 @@ public class PlayerControl : MonoBehaviour {
     {
         if (other.transform.tag == "ground")
         {
-            grounded = true;
+            grounded = true;    
             isHurtable = true;
             Physics.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("player"),false);
             Physics.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("charger"),false);

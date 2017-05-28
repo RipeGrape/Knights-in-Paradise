@@ -144,12 +144,14 @@ public class EnemyMove : MonoBehaviour {
             {
                 playerHit.PlayerHit(-dir);
             }
-            else if(!facingLeft)
+            else
             {
                 playerHit.PlayerHit(-dir);
             }
-            
         }
-        
+        if (col.collider.gameObject.layer == LayerMask.NameToLayer("wall"))
+        {
+            Flip();
+        }
     }
 }

@@ -9,6 +9,7 @@ public class PlayerHurt : MonoBehaviour {
     public bool isHurt = false;
     public Slider healthBar;
     public Text NotificationText;
+    Vector3 knockback;
 
     PlayerControl playerCtrl;
     EnemyMove enemyDir;
@@ -59,7 +60,8 @@ public class PlayerHurt : MonoBehaviour {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("charger"));
 
         anim.SetTrigger("IsHurt");
-        player.AddRelativeForce(110f * direction, 110f, 0);
+        player.velocity = Vector3.zero;
+        KnockBack(direction);
         playerCtrl.isHurtable = false;
         currentHealth -= 1;
         if(currentHealth <= 0)
@@ -68,6 +70,13 @@ public class PlayerHurt : MonoBehaviour {
             Death();
         }
         updateHealth();
+    }
+
+    void KnockBack(float dir)
+    {
+        player.AddForce(0f, 110f, 0f);
+        player.AddForce(110f * dir, 0f, 0f);
+
     }
 
     void updateHealth()
@@ -80,6 +89,6 @@ public class PlayerHurt : MonoBehaviour {
     void Death()
     {
         boxCollider.isTrigger = true;
-        player.AddRelativeForce(110f, 110f, 110f);
+        player.AddRelativeForce(110f, 110f, 40f);
     }
 }

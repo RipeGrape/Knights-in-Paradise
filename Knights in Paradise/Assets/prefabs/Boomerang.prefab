@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4755773318640808}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: transform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4879595338799092}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BaseCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,9 +53,10 @@ GameObject:
   - component: {fileID: 114761574921009106}
   - component: {fileID: 135972802545121532}
   - component: {fileID: 95327629814465020}
-  m_Layer: 0
+  - component: {fileID: 135524516214683982}
+  m_Layer: 16
   m_Name: Boomerang
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +69,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4055297688939282}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +84,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4507447155422216}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +99,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4214162669467224}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: transform6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +114,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4813920809874638}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCube6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +129,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4432320003577788}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: transform5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +144,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4577617389637308}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +159,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4635054261982362}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +176,7 @@ GameObject:
   - component: {fileID: 4253612149295196}
   - component: {fileID: 33136760466506008}
   - component: {fileID: 23839808740334524}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pPlane1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +191,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4334487226398536}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4332214423859128}
   - component: {fileID: 137418589430903450}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCube7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +222,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4773762253055958}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: transform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +237,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4673629669158022}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +252,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4638326963597312}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,6 +563,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d981e3ad9530f242ac0ca0368f594fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  returning: 0
+--- !u!135 &135524516214683982
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279063863105176}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Center: {x: -0.015, y: 0.055, z: 0}
 --- !u!135 &135972802545121532
 SphereCollider:
   m_ObjectHideFlags: 1
