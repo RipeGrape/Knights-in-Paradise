@@ -8,14 +8,22 @@ public class EnemyHealth : MonoBehaviour {
     public int currentHealth;
     float hitTimer;
 
+    private Transform player;
     Rigidbody enemy;
     BoxCollider boxCollider;
+    EnemyMove comMove;
+    ChargerAttack chargAttk;
+    BoomerangMastAttack boomMastAttk;
 
     // Use this for initialization
     void Awake () {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         enemy = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         currentHealth = enemyHealth;
+        comMove = transform.root.GetComponent<EnemyMove>();
+        chargAttk = transform.root.GetComponent<ChargerAttack>();
+        boomMastAttk = transform.root.GetComponent<BoomerangMastAttack>();
     }
 	
 	// Update is called once per frame
@@ -26,6 +34,7 @@ public class EnemyHealth : MonoBehaviour {
 
     public void EnemyHit()
     {
+        enemy.velocity = Vector3.zero;
         KnockBack();
         currentHealth -= 1;
         if (currentHealth <= 0)
@@ -36,13 +45,25 @@ public class EnemyHealth : MonoBehaviour {
     
     void KnockBack()
     {
-        enemy.AddForce(110f, 110f, 0f);
+        var horiDirection = player.position - transform.position;
+        if (horiDirection.x > 0)
+        {
+            enemy.AddForce(-3f, 3f, 0f, ForceMode.VelocityChange);
+        }
+        else
+        {
+            enemy.AddForce(3f, 3f, 0f, ForceMode.VelocityChange);
+        }
     }
 
     void Death()
-    {
+    {        
         boxCollider.isTrigger = true;
-        enemy.AddForce(110f, 110f, 0f);
+        enemy.AddForce(0f, 0f, -40f);
+
+        comMove.enabled = false;
+        chargAttk.enabled = false;
+        boomMastAttk.enabled = false;
     }
 
     void OnCollisionEnter(Collision other)

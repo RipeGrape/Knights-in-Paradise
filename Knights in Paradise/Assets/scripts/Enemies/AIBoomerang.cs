@@ -34,6 +34,9 @@ public class AIBoomerang : MonoBehaviour {
     void Update()
     {
         throwTimer += Time.deltaTime;
+        var vertDirection = enemy.position - transform.position;
+        vertDirection.x = 0;
+        vertDirection.y *= 2;
         var horiDirection = enemy.position - transform.position;
 
         if (throwTimer >= 1.5f)
@@ -56,7 +59,7 @@ public class AIBoomerang : MonoBehaviour {
             {
                 transform.Translate(Vector3.right * -speed * Time.deltaTime, Space.World);           
             }
-            
+            transform.Translate(vertDirection * vertSpeed * Time.deltaTime, Space.World);
         }
     }
 

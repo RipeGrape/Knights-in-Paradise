@@ -12,10 +12,10 @@ public class PlayerHurt : MonoBehaviour {
     Vector3 knockback;
 
     PlayerControl playerCtrl;
+    ThrowBoomerang playerAttk;
     EnemyMove enemyDir;
     Rigidbody player;
     Animator anim;
-    GameObject enemyWeapon;
     BoxCollider boxCollider;
     float hitTimer;
     
@@ -26,8 +26,8 @@ public class PlayerHurt : MonoBehaviour {
         player = GetComponent<Rigidbody>();
         enemyDir = GetComponent<EnemyMove>();
         playerCtrl = GetComponent<PlayerControl>();
+        playerAttk = GetComponent<ThrowBoomerang>();
         anim = GetComponent<Animator>();
-        enemyWeapon = GameObject.FindGameObjectWithTag("EnemyWeapon");
         boxCollider = GetComponent<BoxCollider>();
     
         hitTimer = 0f;
@@ -64,19 +64,18 @@ public class PlayerHurt : MonoBehaviour {
         KnockBack(direction);
         playerCtrl.isHurtable = false;
         currentHealth -= 1;
-        if(currentHealth <= 0)
+
+        updateHealth();
+        if (currentHealth <= 0)
         {
             NotificationText.text = "Ouch, Game Over";
             Death();
-        }
-        updateHealth();
+        }    
     }
 
     void KnockBack(float dir)
     {
-        player.AddForce(0f, 110f, 0f);
-        player.AddForce(110f * dir, 0f, 0f);
-
+        player.AddForce(3f * dir, 3f, 0f, ForceMode.VelocityChange);
     }
 
     void updateHealth()
@@ -88,7 +87,11 @@ public class PlayerHurt : MonoBehaviour {
 
     void Death()
     {
+        player.velocity = Vector3.zero;
+        player.AddForce(0f,0f, -40f);
         boxCollider.isTrigger = true;
-        player.AddRelativeForce(110f, 110f, 40f);
+
+        playerAttk.enabled = false;
+        playerCtrl.enabled = false;
     }
 }
