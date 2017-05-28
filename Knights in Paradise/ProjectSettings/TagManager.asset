@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Foreground
+  - ground
+  - boundry
+  - BoomerangMaster
+  - EnemyWeapon
+  - Charger
+  - PlayerWeapon
   layers:
   - Default
   - TransparentFX
@@ -15,14 +21,14 @@ TagManager:
   - 
   - 
   - Forground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - player
+  - ground
+  - enemy
+  - boundry
+  - EnemyWeapon
+  - charger
+  - wall
+  - PlayerWeapon
   - 
   - 
   - 
